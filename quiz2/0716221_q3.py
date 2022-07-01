@@ -1,0 +1,105 @@
+# -*- coding: utf-8 -*-
+vowels=['A', 'E', 'I', 'O', 'U']
+ciphertext = "ECDTM ECAER AUOOL EDSAM MERNE NASSO DYTNR VBNLC RLTIQ LAETR IGAWE BAAEI HOR"
+msg1="CRYPTANALYSIS IN RECENT PUBLICATIONS ALSO CRYPTANALYSIS REFERS IN THE ORIGINAL SENSE TO THE STUDY OF METHODS AND TECHNIQUES TO OBTAIN INFORMATION FROM SEALED TEXTS THIS INFORMATION CAN BE BOTH THE KEY USED AND THE ORIGINAL TEXT NOWADAYS, THE TERM CRYPTANALYSIS MORE GENERALLY REFERS TO THE ANALYSIS OF CRYPTOGRAPHIC METHODS NOT ONLY FOR CLOSURE WITH THE AIM OF EITHER BREAKING THEM I E ABOLISHING THEIR PROTECTIVE FUNCTION OR OR TO PROVE AND QUANTIFY THEIR SECURITY CRYPTANALYSIS IS THUS THE COUNTERPART TO CRYPTOGRAPHY BOTH ARE SUBFIELDS OF CRYPTOLOGY"
+msg2="DIE KRYPTOANALYSE IN NEUEREN PUBLIKATIONEN AUCH KRYPTANALYSE BEZEICHNET IM URSPRUNGLICHEN SINNE DAS STUDIUM VON METHODEN UND TECHNIKEN UM INFORMATIONEN AUS VERSCHLUSSELTEN TEXTEN ZU GEWINNEN DIESE INFORMATIONEN KONNEN SOWOHL DER VERWENDETE SCHLUSSEL ALS AUCH DER ORIGINALTEXT SEIN HEUTZUTAGE BEZEICHNET DER BEGRIFF KRYPTOANALYSE ALLGEMEINER DIE ANALYSE VON KRYPTOGRAPHISCHEN VERFAHREN NICHT NUR ZUR VERSCHLUSSELUNG MIT DEM ZIEL DIESE ENTWEDER ZU BRECHEN D H IHRE SCHUTZFUNKTION AUFZUHEBEN BZW ZU UMGEHEN ODER IHRE SICHERHEIT NACHZUWEISEN UND ZU QUANTIFIZIEREN KRYPTOANALYSE IST DAMIT DAS GEGENSTUCK ZUR KRYPTOGRAPHIE BEIDE SIND TEILGEBIETE DER KRYPTOLOGIE"
+msg3="MVWZXYXEJIWGC ML BIAORR ZYZVMAKXGYRQ KPQY GPITRKRYVCQSW POJCBW GX XFO SPSKGXEJ CILCI RY XFO WREHW YJ KOXFYHQ KRB DIARRGAYCC XM YFRKML SRDYVKKXGYR DBSK CIYVIB DIVDW RRMQ SRDYVKKXGYR AKR ZO FMDL RRI IOC SCIB KRB DLC YVGQMLKP ROBR XSUKHYIW, RRI ROVK MVWZXYXEJIWGC QMBI EORCBEJVC POJCBW RY XFO ELKPWCMQ YJ ABCNDSEBENRMA WIRRSBC RMD SLVC DYV AVSQEVC GMRR XFO EGW SD OMRRIP LVCKOGXK RRIK S I YLSJSWFSRE DLCSV NBSROGRSZC PYLMXGYR MB SP DS NBSTO ELN USKRRSJW DLCSV QOGSBMRI GPITRKRYVCQSW GC XFEW RRI AYYLDIPZEPD XM MVWZXMQVYZLW LSRR EPO WSLJGOPBC SD MVWZXMVSEI"
+msg4="FUBSWDQDOBVLV LQ UHFHQW SXEOLFDWLRQV DOVR FUBSWDQDOBVLV UHIHUV LQ WKH RULJLQDO VHQVH WR WKH VWXGB RI PHWKRGV DQG WHFKQLTXHV WR REWDLQ LQIRUPDWLRQ IURP VHDOHG WHAWV WKLV LQIRUPDWLRQ FDQ EH ERWK WKH NHB XVHG DQG WKH RULJLQDO WHAW QRZDGDBV, WKH WHUP FUBSWDQDOBVLV PRUH JHQHUDOOB UHIHUV WR WKH DQDOBVLV RI FUBSWRJUDSKLF PHWKRGV QRW RQOB IRU FORVXUH ZLWK WKH DLP RI HLWKHU EUHDNLQJ WKHP L H DEROLVKLQJ WKHLU SURWHFWLYH IXQFWLRQ RU RU WR SURYH DQG TXDQWLIB WKHLU VHFXULWB FUBSWDQDOBVLV LV WKXV WKH FRXQWHUSDUW WR FUBSWRJUDSKB ERWK DUH VXEILHOGV RI FUBSWRORJB"
+message="RHVST TEYSJ KMHUM BBCLC GLKBM HBSJH HDAYC PPWHD UUTAP STJAI YMXKA OKARN NATNG CVRCH BNGJU EMXWH UERZE RLDMX MASRT LAHRJ KIILJ BQCTI BVFZW TKBQE OPKEQ OEBMU NUTAK ZOSLD MKXVO YELLX SGHTT PNROY MORRW BWZKX FFIQJ HVDZZ JGJZY IGYAT KWVIB VDBRM BNVFC MAXAM CALZE AYAZK HAOAA ETSGZ AAJFX HUEKZ IAKPM FWXTO EBUGN THMYH FCEKY VRGZA QWAXB RSMSI IWHQM HXRNR XMOEU ALYHN ACLHF AYDPP JBAHV MXPNF LNWQB WUGOU LGFMO BJGJB PEYVR GZAQW ANZCL XZSVF BISMB KUOTZ TUWUO WHFIC EBAHR JPCWG CVVEO LSSGN EFGCC SWHYK BJHMF ONHUE BYDRS NVFMR JRCHB NGJUB TYRUU TYVRG ZAXWX CSADX YIAKL INGXF FEEST UWIAJ EESFT HAHRT WZGTM CRS"
+'''
+print("Q1: ")
+# rectangle 7*9
+rect79=[]
+idx=0
+for i in range(9):
+    rect79.append([])
+    for j in range(7):
+        if(ord(ciphertext[idx]) < 65  or ord(ciphertext[idx]) > 90):
+            idx += 1
+        rect79[i].append(ciphertext[idx])
+        idx += 1
+        
+print("rectangle 7*9")
+diff79=0
+for i in range(7):
+    vowelNum=0
+    for j in range(9):
+        if(rect79[j][i] in vowels):
+            vowelNum += 1
+        print(rect79[j][i], end=' ')
+    diff=round(abs(vowelNum - 0.4 * 9), 1)
+    diff79 += diff
+    print("\tdifference: " + str(diff))
+print("average difference: " + str(diff79/7))
+
+# rectangle 9*7
+rect97=[]    
+idx=0
+for i in range(7):
+    rect97.append([])
+    for j in range(9):
+        if(ord(ciphertext[idx]) < 65  or ord(ciphertext[idx]) > 90):
+            idx += 1
+        rect97[i].append(ciphertext[idx])
+        idx += 1  
+        
+print("\nrectangle 9*7")         
+diff97=0
+for i in range(9):
+    vowelNum=0
+    for j in range(7):
+        if(rect97[j][i] in vowels):
+            vowelNum += 1
+        print(rect97[j][i], end=' ')
+    diff=round(abs(vowelNum - 0.4 * 7), 1)
+    diff97 += diff
+    print("\tdifference: " + str(diff))   
+print("average difference: " + str(diff97/9))
+    
+print()
+print("Q2: ")
+for i in range(9):
+        print(rect97[5][i], end=' ')
+        print(rect97[2][i], end=' ')
+        print(rect97[3][i], end=' ')
+        print(rect97[0][i], end=' ')
+        print(rect97[1][i], end=' ')
+        print(rect97[4][i], end=' ')
+        print(rect97[6][i])
+'''    
+def calIC(msg): 
+    letters={}
+    for i in range(26):
+        letters.update({chr(i+65):0})
+    num=0
+    for i in range(len(msg)):
+        if(ord(msg[i]) < 65  or ord(msg[i]) > 90):
+            continue
+        tmp=letters[msg[i]]
+        num += 1
+        letters.update({msg[i]:tmp+1})
+    IC=0
+    for i in range(26):
+        val=letters[chr(i+65)]
+        IC += ( val * (val-1))
+    IC = IC/(num * (num-1))
+    print(IC)
+
+print()
+print("Q3: ")
+print("The IC of message 1: ", end='')
+calIC(msg1)
+print("The IC of message 2: ", end='')
+calIC(msg2)
+print("The IC of message 3: ", end='')
+calIC(msg3)
+print("The IC of message 4: ", end='')
+calIC(msg4)
+print()
+print("Q4: ")
+print("The IC of message: ", end='')
+calIC(message)
+print("=> polyalphabetic")
+
+
+
